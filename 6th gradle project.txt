@@ -1,0 +1,79 @@
+6th --- Gradle project
+
+**************************************** PART 1 - Create A maven Project **************************************************************************************
+
+install java jdk 21!
+
+1) install maven binary file for windows
+2) extract it some where like make a folder (maven) in c drive and extract it 
+3) set the paths for maven using these 2 commands 
+	- open cmd as administrator
+	> setx MAVEN_HOME "C:\maven\apache-maven-3.9.10"      (till extracted file)
+	> setx PATH "C:\maven\apache-maven-3.9.10\bin"        (till bin in the extracted file)
+	- restart cmd
+	  - check maven with > mvn -v
+
+4) create a maven project with directory
+   - navigate cmd to the folder where you want to make the project files
+   >> mvn archetype:generate -DgroupId=com.example -DartifactId=demo-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+
+
+**************************************** PART 2 - Gradle Integration *****************************************************************************************
+
+5) install gradle binary file and set the path just like step (3)
+	> setx GRADLE_HOME "C:\gradle\gradle-8.14.3"
+	> setx PATH "C:\gradle\gradle-8.14.3/bin"
+
+6) in the maven project directory
+   - delete the pom.xml file
+   - create 
+	i)build.gradle
+
+		plugins {
+		   id 'java'
+		}
+		group = 'com.example'
+		version = '1.0-SNAPSHOT'
+		repositories {
+		   mavenCentral()
+		}
+		dependencies {
+		   testImplementation 'junit:junit:4.13.2'
+		}
+
+
+	ii) settings.gradle
+		
+		rootProject.name = 'demo-project
+
+7) navigate to the project folder
+	>> gradle build
+	>> gradle test 
+
+8) Run the project (Run the JAR File)
+    - navigate to your project root directory (demo) ---------------> stay in the same directory as previous
+    - jar file is in build/libs and the app in main/com/example
+	>>java -cp build/libs/demo-1.0-SNAPSHOT.jar com.example.App
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
